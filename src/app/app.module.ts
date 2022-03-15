@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ValuableComponent } from './valuable/valuable.component';
+import { ValuablesService } from './valuables.service';
+import { BasketComponent } from './basket/basket.component';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ValuableComponent,
+    BasketComponent,
+    SignupComponent,
+	LoginComponent,
+	LogoutComponent
+  ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [ValuablesService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

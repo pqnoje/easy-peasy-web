@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Buyer } from './buyer.model'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthenticationService {
+	isLogged: boolean
+	private loggedInObservable: BehaviorSubject<boolean>
+
+	private loginUrl = 'http://localhost:3000/login'
+	private logoutUrl = 'http://localhost:3000/logout'
+	
+	constructor(private http: HttpClient) { 
+		this.isLogged = false
+		this.loggedInObservable = new BehaviorSubject<boolean>(false)
+		this.authenticate()
+	}
+	
+	private authenticate(): boolean {
+		let token = window.localStorage.getItem('ecommerce-application-token')
+		if(token) {
+			this.isLogged = true
+			this.loggedInObservable.next(this.isLogged)
+		}
+		return this.isLogged
+	}	
+
+	public session(): Observable<boolean> {
+		return this.loggedInObservable
+	}
+	
+	public login(buyer: Buyer): Observable<any> {
+		return this.http.post<any[]>(this.loginUrl, buyer)
+	}
+	
+	public logout(token: string): Observable<any> {
+		return this.http.post<any[]>(this.logoutUrl, { token })
+	}
+
+	public removeToken(): void {
+		window.localStorage.removeItem('ecommerce-application-token')
+		this.isLogged = false
+		this.loggedInObservable.next(this.isLogged)
+	}
+	
+	public setUserLoggedIn(token: any): void {
+		if(token) {
+			this.isLogged = true
+			window.localStorage.setItem('ecommerce-application-token', token)
+			this.loggedInObservable.next(this.isLogged)
+		}
+	}
+}

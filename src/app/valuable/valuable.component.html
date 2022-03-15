@@ -1,0 +1,11 @@
+<p>valuable works!</p>
+<div>
+	<ul>
+		<li *ngFor="let valuable of valuables">
+			<p>{{ valuable.title }}</p>
+			<p>description: {{ valuable.description }} </p>
+			<p><span>$</span> {{ valuable.value }}</p>
+			<input type="button" value="buy" (click)="save(valuable)"/>
+		</li>
+	</ul>
+</div>
