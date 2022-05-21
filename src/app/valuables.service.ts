@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValuablesService {
-	private valuablesInBasket: any[] = []
+	public valuablesInBasket: any[] = []
   	private valuablesUrl = 'http://localhost:3000/valuables'
   	private verifyValuableDisponibilityUrl = 'http://localhost:3000/valuables/verify'
-	private saveBasketUrl = 'http://localhost:3000/valuables/saveBasket'
-  
+	
 	constructor(
 		private http: HttpClient) { }
 
@@ -32,9 +31,4 @@ export class ValuablesService {
 			resolve(true)
 		})
 	}
-
-	saveBasket(): Observable<any> {
-		return this.http.put<any[]>(this.saveBasketUrl, { valuables: this.valuablesInBasket })
-	}
-
 }

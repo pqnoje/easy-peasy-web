@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketService } from '../basket.service';
 import { ValuablesService } from '../valuables.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class BasketComponent implements OnInit {
 	message: any = "Have a nice shop!"
 
 	constructor(
-		private valuablesService: ValuablesService
+		private valuablesService: ValuablesService,
+		private basketService: BasketService
 	) { }
 
 	ngOnInit(): void {
@@ -20,7 +22,7 @@ export class BasketComponent implements OnInit {
 	}
 
 	public saveBasket() {
-		this.valuablesService.saveBasket().subscribe(result => {
+		this.basketService.saveBasket().subscribe(result => {
 			debugger
 		})
 	}

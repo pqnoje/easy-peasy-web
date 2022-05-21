@@ -9,9 +9,13 @@ import { AppComponent } from './app.component';
 import { ValuableComponent } from './valuable/valuable.component';
 import { ValuablesService } from './valuables.service';
 import { BasketComponent } from './basket/basket.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './access/signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+
+import { httpInterceptorProviders } from './access/http-interceptors';
+import { AdminComponent } from './admin/admin.component'
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -19,17 +23,19 @@ import { LogoutComponent } from './logout/logout.component';
     ValuableComponent,
     BasketComponent,
     SignupComponent,
-	LoginComponent,
-	LogoutComponent
+	  LoginComponent,
+	  LogoutComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [ValuablesService],
+  providers: [ValuablesService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

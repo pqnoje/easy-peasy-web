@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { Buyer } from '../buyer.model'
-import { SignupService } from '../signup.service'
+import { Buyer } from '../../buyer.model'
+import { SignupService } from '../../signup.service'
 
 @Component({
   selector: 'app-signup',

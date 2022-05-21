@@ -4,7 +4,7 @@ import { Buyer } from './buyer.model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class AuthenticationService {
 	isLogged: boolean
@@ -12,30 +12,30 @@ export class AuthenticationService {
 
 	private loginUrl = 'http://localhost:3000/login'
 	private logoutUrl = 'http://localhost:3000/logout'
-	
-	constructor(private http: HttpClient) { 
+
+	constructor(private http: HttpClient) {
 		this.isLogged = false
 		this.loggedInObservable = new BehaviorSubject<boolean>(false)
 		this.authenticate()
 	}
-	
+
 	private authenticate(): boolean {
 		let token = window.localStorage.getItem('ecommerce-application-token')
-		if(token) {
+		if (token) {
 			this.isLogged = true
 			this.loggedInObservable.next(this.isLogged)
 		}
 		return this.isLogged
-	}	
+	}
 
 	public session(): Observable<boolean> {
 		return this.loggedInObservable
 	}
-	
+
 	public login(buyer: Buyer): Observable<any> {
 		return this.http.post<any[]>(this.loginUrl, buyer)
 	}
-	
+
 	public logout(token: string): Observable<any> {
 		return this.http.post<any[]>(this.logoutUrl, { token })
 	}
@@ -45,9 +45,9 @@ export class AuthenticationService {
 		this.isLogged = false
 		this.loggedInObservable.next(this.isLogged)
 	}
-	
+
 	public setUserLoggedIn(token: any): void {
-		if(token) {
+		if (token) {
 			this.isLogged = true
 			window.localStorage.setItem('ecommerce-application-token', token)
 			this.loggedInObservable.next(this.isLogged)

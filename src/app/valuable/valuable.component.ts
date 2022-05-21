@@ -24,7 +24,7 @@ export class ValuableComponent implements OnInit {
 	public save(valuable: any) {
 		this.valuablesService.verifyValuableDisponibility(valuable.id).subscribe(alreadyInShop => {
 			debugger
-			if(!alreadyInShop) {
+			if (!alreadyInShop) {
 				this.valuablesService.addValuableToBasket(valuable).then(result => {
 					debugger
 				})
