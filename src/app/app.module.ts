@@ -10,8 +10,8 @@ import { ValuableComponent } from './valuable/valuable.component';
 import { ValuablesService } from './valuables.service';
 import { BasketComponent } from './basket/basket.component';
 import { SignupComponent } from './access/signup/signup.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
+import { LoginComponent } from './access/login/login.component';
+import { LogoutComponent } from './access/logout/logout.component';
 
 import { httpInterceptorProviders } from './access/http-interceptors';
 import { AdminComponent } from './admin/admin.component'

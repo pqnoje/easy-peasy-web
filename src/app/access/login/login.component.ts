@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Buyer } from '../buyer.model'
-import { AuthenticationService } from '../authentication.service'
+import { Buyer } from '../../buyer.model'
+import { AuthenticationService } from '../../authentication.service'
 
 @Component({
   selector: 'app-login',

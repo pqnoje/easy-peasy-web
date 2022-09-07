@@ -9,26 +9,27 @@ import { ValuablesService } from './valuables.service';
 })
 export class BasketService {
   private saveBasketUrl = 'http://localhost:3000/basket'
-  private valublesInBasket: Array<Valuable>
+  private valuables: Array<Valuable>
   constructor(
-		private http: HttpClient,
-    private valuablesService: ValuablesService) { 
-      this.valublesInBasket = new Array<Valuable>()
+		private http: HttpClient) { 
+      this.valuables = new Array<Valuable>()
     }
 
   saveBasket(): Observable<any> {
-        this.valublesInBasket = this.valuablesService.valuablesInBasket
         return this.http.put<any[]>(
           this.saveBasketUrl, 
           { 
-            valuables: this.valublesInBasket
+            valuables: this.valuables
           }
         )
 
 	}
 
-  getValuablesInBaske(): Array<Valuable> {
-    return this.valublesInBasket
+  getValuables(): Array<Valuable> {
+    return this.valuables
   }
 
+  addValuable(valuable: Valuable): void {
+    this.valuables.push(valuable)
+  }
 }

@@ -28,7 +28,7 @@ export class BasketComponent implements OnInit {
 	}
 
 	private loadAllValuables() {
-		this.valuablesService.getValuablesInBasket().then(values => this.valuables = values)
+		this.valuables = this.basketService.getValuables()
 	}
 
 }

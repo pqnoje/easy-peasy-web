@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketService } from '../basket.service';
 import { ValuablesService } from '../valuables.service';
 
 @Component({
@@ -10,7 +11,8 @@ export class ValuableComponent implements OnInit {
 	valuables: any[] = []
 	message: any = "Have a nice shop!"
 	constructor(
-		private valuablesService: ValuablesService
+		private valuablesService: ValuablesService,
+		private basketService: BasketService,
 	) { }
 
 	ngOnInit(): void {
@@ -22,13 +24,6 @@ export class ValuableComponent implements OnInit {
 	}
 
 	public save(valuable: any) {
-		this.valuablesService.verifyValuableDisponibility(valuable.id).subscribe(alreadyInShop => {
-			debugger
-			if (!alreadyInShop) {
-				this.valuablesService.addValuableToBasket(valuable).then(result => {
-					debugger
-				})
-			}
-		})
+		this.basketService.addValuable(valuable)
 	}
 }
